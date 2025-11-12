@@ -1,0 +1,4 @@
+[console_scripts]
+bridge = mujoco_bridge.bridge:main
+plot_logger = mujoco_bridge.plot_logger:main
+pub_demo = mujoco_bridge.pub_demo:main

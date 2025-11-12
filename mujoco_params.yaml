@@ -1,0 +1,9 @@
+mujoco_bridge:
+  ros__parameters:
+    model_path: "/home/fernando/.mujoco/mujoco-3.3.4/my_project/Dummy2/DummyTorsoMovil.xml"
+    actuator_names:
+      - "MusloDerechoCable"
+      - "MusloIzquierdoCable"
+      - "PiernaDerechoCable"
+      - "PiernaIzquierdoCable"
+    use_viewer: true

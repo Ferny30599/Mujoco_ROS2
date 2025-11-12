@@ -1,0 +1,237 @@
+<mujoco model="Dummy">
+  <option timestep="0.001"/>
+  <compiler meshdir="meshes" angle="radian"/>
+
+  <visual>
+    <map force="0.1" zfar="30"/>
+    <rgba haze="0.15 0.25 0.35 1"/>
+    <global offwidth="2560" offheight="1440" elevation="1.5" azimuth="89" fovy="30"/>
+  </visual>
+
+  <statistic center="1.5 -0.5 1.1"/>
+
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1=".3 .5 .7" rgb2="0 0 0" width="32" height="512"/>
+    <texture name="body" type="cube" builtin="flat" mark="cross" width="128" height="128" rgb1="0.8 0.6 0.4" rgb2="0.8 0.6 0.4" markrgb="1 1 1"/>
+    <material name="body" texture="body" texuniform="true" rgba="0.8 0.8 .2 1"/>
+    <texture name="grid" type="2d" builtin="checker" width="512" height="512" rgb1=".1 .2 .3" rgb2=".2 .3 .4"/>
+    <material name="grid" texture="grid" texrepeat="1 1" texuniform="true" reflectance="0"/>
+    <material name="invisibleTendon" rgba="0 0 0 0" specular="0" shininess="0" emission="0"/>
+    <mesh name="Tronco" file="Tronco.STL"/>
+    <mesh name="Muslo_Izquierdo" file="Muslo_Izquierdo.STL"/>
+    <mesh name="Pierna_Izquierda" file="Pierna_Izquierda.STL"/>
+    <mesh name="Tobillo_Izquierdo" file="Tobillo_Izquierdo.STL"/>
+    <mesh name="Dedos_Izquierdo" file="Dedos_Izquierdo.STL"/>
+    <mesh name="Muslo_Derecho" file="Muslo_Derecho.STL"/>
+    <mesh name="Pierna_Derecha" file="Pierna_Derecha.STL"/>
+    <mesh name="Tobillo_Derecho" file="Tobillo_Derecho.STL"/>
+    <mesh name="Dedos_Derecho" file="Dedos_Derecho.STL"/>
+    <mesh name="Brazo_Izquierdo" file="Brazo_Izquierdo.STL"/>
+    <mesh name="Antebrazo_Izquierdo" file="Antebrazo_Izquierdo.STL"/>
+    <mesh name="Mano_Izquierda" file="Mano_Izquierda.STL"/>
+    <mesh name="Brazo_Derecho" file="Brazo_Derecho.STL"/>
+    <mesh name="Antebrazo_Derecho" file="Antebrazo_Derecho.STL"/>
+    <mesh name="Mano_Derecha" file="Mano_Derecha.STL"/>
+  </asset>
+
+  <worldbody>
+    <geom name="floor" size="0 0 .05" type="plane" material="grid" condim="3"/>
+    <light name="top" pos="3 -0.4 2" mode="targetbody"/>
+        <!-- ::BARANDAL::-->
+    <geom type="cylinder" size="0.0254 0.5 0.2" rgba=".9 .9 .1 0.1" pos="0 -0.15 0.52"/>
+    <geom type="cylinder" size="0.0254 0.5 0.2" rgba=".9 .9 .1 0.1" pos="0 -0.78 0.52"/>
+    <geom type="cylinder" size="0.0254 0.5 0.2" rgba=".9 .9 .1 0.1" pos="3 -0.15 0.52"/>
+    <geom type="cylinder" size="0.0254 0.5 0.2" rgba=".9 .9 .1 0.1" pos="3 -0.78 0.52"/>
+    <geom type="box" size="1.6 0.1 0.03" rgba=".9 .9 .1 0.1" pos="1.5 -0.15 1.0"/>
+    <geom type="box" size="1.6 0.1 0.03" rgba=".9 .9 .1 0.1" pos="1.5 -0.78 1.0"/>
+    <geom type="box" size="1.6 0.1 0.03" rgba=".9 .9 .1 0.1" pos="1.5 -0.15 1.0"/>
+    <geom type="box" size="1.6 0.1 0.03" rgba=".9 .9 .1 0.1" pos="1.5 -0.78 1.0"/>
+    <!-- ::DUMMY:: -->
+    <body name="Torso" pos="2 -0.4 0.9" quat="0.7070927592259219 -0.00327656553926315 0.0032837783973083123 0.7071040846256419">
+      <geom type="mesh" mesh="Tronco" material="body"/>
+      <site name="Cabeza" type="sphere" size="0.02 0.02 0.02" pos="-0.06 1.62 0.96" rgba=".2 .1 .9 0"/>
+      <geom name="MecMusIzq" type="box" pos="0.03 1.45 0.23" size="0.06 0.04 0.06" rgba="0.3 0.35 0.8 1"/>
+      <geom name="MecMusDer" type="box" pos="-0.15 1.45 0.23" size="0.06 0.04 0.06" rgba="0.3 0.35 0.8 1"/>
+      <geom name="MecPieIzq" type="box" pos="0.03 1.7 0.23" size="0.06 0.04 0.06" rgba="0.3 0.35 0.8 1"/>
+      <geom name="MecPieDer" type="box" pos="-0.15 1.7 0.23" size="0.06 0.04 0.06" rgba="0.3 0.35 0.8 1"/>
+      <site name="drumMusDer" pos="-0.15 1.435 0.23" size="0.01" rgba="1 0 0 1"/>
+      <site name="drumMusIzq" pos="0.035 1.435 0.23" size="0.01" rgba="1 0 0 1"/>
+      <site name="drumPieDer" pos="-0.15 1.7 0.23" size="0.01" rgba="1 0 0 1"/>
+      <site name="drumPieIzq" pos="0.035 1.7 0.23" size="0.01" rgba="1 0 0 1"/>
+      <inertial pos="-0.062758 1.5831 0.46592" quat="0.752889 0.658148 0 0" mass="50.15" diaginertia="1.1284 1.2945 0.52127"/>
+      <camera name="back" pos="-3 0 1" xyaxes="0 -1 0 1 0 2" mode="trackcom"/>
+      <camera name="side" pos="0 -3 1" xyaxes="1 0 0 0 1 2" mode="trackcom"/>
+      <freejoint name="root"/>
+
+      <body name="Muslo_Izquierdo" pos="0 1.5778 0.076154" quat="0.649249 0.760576 0 0">
+        <site name="RodilleraIzq" type="sphere" size="0.01 0.01 0.01" pos="0.05 -0.35 0.13" rgba="0.2 0.2 0.2 1"/>
+        <inertial pos="0.051392 -0.15837 0.020738" quat="0.752889 0.658148 0 0" mass="8.245" diaginertia="0.30124 0.287876 0.0603824"/>
+        <joint name="Cadera_Izquierda" pos="0 0 0" axis="-1 0 0" range="-1.04 1.57"/>
+        <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="Muslo_Izquierdo"/>
+        <body name="Pierna_Izquierda" pos="0 -0.45275 0.06363" quat="0.991994 -0.126287 0 0">
+          <site name="GrilleteIzq" type="sphere" size="0.01 0.01 0.01" pos="0.05 -0.35 -0.095" rgba=".2 .2 0.2 1"/>
+          <inertial pos="0.051392 -0.15304 -0.020291" quat="0.468173 0.529919 -0.529919 0.468173" mass="3.825" diaginertia="0.093646 0.093036 0.013735"/>
+          <joint name="Rodilla_Izquierda" pos="0 0 0" axis="1 0 0" range="0 2.5"/>
+          <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="Pierna_Izquierda"/>
+          <body name="Tobillo_Izquierdo" pos="0 -0.4033 -0.050079" quat="0.999153 0.0411449 0 0">
+            <inertial pos="0.051192 -0.043595 0.035842" quat="0.993721 0.111891 -6.69545e-07 5.94635e-06" mass="0.85" diaginertia="0.0076385 0.00725203 0.00355277"/>
+            <joint name="Tarso_Izquierdo" pos="0 0 0" axis="1 0 0" range="-0.7854 1" damping="0.2" frictionloss="0.05"/>
+            <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="Tobillo_Izquierdo"/>
+            <body name="Dedos_Izquierdo" pos="-0.0022926 -0.063327 0.1099" quat="0.999978 0.00669045 0 0">
+              <inertial pos="0.053484 -0.0082332 0.072078" quat="0.480121 0.519111 0.480134 0.519113" mass="0.34" diaginertia="0.000759584 0.000566096 0.00053591"/>
+              <joint name="Metatarso_Izquierdo" pos="0 0 0" axis="1 0 0" range="-0.7854 0.7854" damping="0.2" frictionloss="0.05"/>
+              <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="Dedos_Izquierdo" friction="1.2 0.005 0.0002"/>
+            </body>
+          </body>
+        </body>
+      </body>
+
+      <body name="Muslo_Derecho" pos="-0.10066 1.5778 0.076154" quat="0.649249 0.760576 0 0">
+        <site name="RodilleraDer" type="sphere" size="0.01 0.01 0.01" pos="-0.08 -0.35 0.13" rgba=".2 .2 .2 1"/>
+        <inertial pos="-0.076202 -0.15837 0.020738" quat="0.752889 0.658148 0 0" mass="8.245" diaginertia="0.30124 0.287876 0.0603824"/>
+        <joint name="Cadera_Derecha" pos="0 0 0" axis="-1 0 0" range="-1.04 1.57"/>
+        <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="Muslo_Derecho"/>
+        <body name="Pierna_Derecha" pos="-0.0127 -0.45275 0.06363" quat="0.991994 -0.126287 0 0">
+          <site name="GrilleteDer" type="sphere" size="0.01 0.01 0.01" pos="-0.065 -0.35 -0.095" rgba=".2 .2 .2 1"/>
+          <inertial pos="-0.063502 -0.15304 -0.020291" quat="0.468173 0.529919 -0.529919 0.468173" mass="3.825" diaginertia="0.093646 0.093036 0.013735"/>
+          <joint name="Rodilla_Derecha" pos="0 0 0" axis="1 0 0" range="0 2.5"/>
+          <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="Pierna_Derecha"/>
+          <body name="Tobillo_Derecho" pos="-0.0099725 -0.4033 -0.050079" quat="0.999153 0.0411449 0 0">
+            <inertial pos="-0.053729 -0.043595 0.035842" quat="0.993721 0.111891 -6.69545e-07 5.94635e-06" mass="0.85" diaginertia="0.0076385 0.00725203 0.00355277"/>
+            <joint name="Tarso_Derecho" pos="0 0 0" axis="1 0 0" range="-0.7854 1" damping="0.2" frictionloss="0.05"/>
+            <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="Tobillo_Derecho"/>
+            <body name="Dedos_Derecho" pos="-0.00043303 -0.063327 0.1099" quat="0.999978 0.00669045 0 0">
+              <inertial pos="-0.053296 -0.0082332 0.072078" quat="0.480121 0.519111 0.480134 0.519113" mass="0.34" diaginertia="0.000759584 0.000566096 0.00053591"/>
+              <joint name="Metatarso_Derecho" pos="0 0 0" axis="1 0 0" range="-0.7854 0.7854" damping="0.2" frictionloss="0.05"/>
+              <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="Dedos_Derecho" friction="1.2 0.005 0.0002"/>
+            </body>
+          </body>
+        </body>
+      </body>
+
+      <body name="Brazo_Izquierdo" pos="0.10219 1.6035 0.57234" quat="0.862731 0.505663 0 0">
+        <inertial pos="0.067394 -0.057634 -0.0063445" quat="0.662391 0.743345 0.0662559 0.0654705" mass="2.295" diaginertia="0.0488414 0.0442054 0.0142362"/>
+        <joint name="Hombro_Izquierdo" pos="0 0 0" axis="-1 0 0" range="-1.57 3.15"/>
+        <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="Brazo_Izquierdo"/>
+        <body name="Antebrazo_Izquierdo" pos="0.057149 -0.27726 -0.034554" quat="0.961448 -0.274986 0 0">
+          <inertial pos="0.031751 -0.10367 0.008029" quat="0.733197 0.680016 0 0" mass="1.36" diaginertia="0.013718 0.0130467 0.00177201"/>
+          <joint name="Codo_Izquierdo" pos="0 0 0" axis="-1 0 0" range="-0.760576 1.7"/>
+          <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="Antebrazo_Izquierdo"/>
+          <body name="Mano_Izquierda" pos="0.0023118 -0.27865 0.020413" quat="0.995338 -0.0964498 0 0">
+            <inertial pos="0.029539 -0.070308 0.011005" quat="0.707575 0.706639 0 0" mass="0.51" diaginertia="0.003195 0.0024772 0.0010969"/>
+            <joint name="Muneca_Izquierda" pos="0 0 0" axis="1 0 0" range="0 0.7854"/>
+            <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="Mano_Izquierda"/>
+          </body>
+        </body>
+      </body>
+
+      <body name="Brazo_Derecho" pos="-0.22781 1.6035 0.57234" quat="-2.22179e-06 -2.92508e-06 0.796328 0.604865">
+        <inertial pos="0.067394 -0.057635 -0.0063449" quat="0.662391 0.743345 0.0662566 0.0654697" mass="2.295" diaginertia="0.0488414 0.0442054 0.0142362"/>
+        <joint name="Hombro_Derecho" pos="0 0 0" axis="1 0 0" range="-1.57 3.15"/>
+        <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="Brazo_Derecho"/>
+        <body name="Antebrazo_Derecho" pos="0.057149 -0.27726 -0.034554" quat="-1.39922e-06 -3.39627e-06 0.924606 0.380925">
+          <inertial pos="-0.031751 -0.10367 0.008029" quat="0.733197 0.680016 0 0" mass="1.36" diaginertia="0.013718 0.0130467 0.00177201"/>
+          <joint name="Codo_Derecho" pos="0 0 0" axis="-1 0 0" range="-0.760576 1.7"/>
+          <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="Antebrazo_Derecho"/>
+          <body name="Mano_Derecha" pos="-0.0023118 -0.27865 0.020413" quat="0.993792 -0.111254 0 0">
+            <inertial pos="-0.029539 -0.070308 0.011005" quat="0.707575 0.706639 0 0" mass="0.51" diaginertia="0.003195 0.0024772 0.0010969"/>
+            <joint name="Muneca_Derecha" pos="0 0 0" axis="1 0 0" range="0 0.7854"/>
+            <geom type="mesh" rgba="0.79216 0.81961 0.93333 1" mesh="Mano_Derecha"/>
+          </body>
+        </body>
+      </body>
+
+    </body>
+    <!-- ::RIEL DESLIZABLE::-->
+    <body name="Soporte_Deslizable" pos="0.375 -0.45 3">
+        <body name="Cuerpo_Deslizante">
+            <joint name="Slide_X" type="slide" pos="0 0 0" axis="1 0 0" range="0 3"/>
+            <geom name="Bloque_Deslizante" type="box" size="0.05 0.05 0.05" rgba="0.5 0 0 0"/>
+            <site name="Desliza" type="sphere" size="0.02 0.02 0.02" pos="0 0 -0.04" rgba=".2 .1 .9 0"/>
+        </body>
+    </body>
+
+  <light name="spotlight" mode="targetbodycom" target="Torso" diffuse=".8 .8 .8" specular="0.3 0.3 0.3" pos="0 -6 4" cutoff="30"/>
+  </worldbody>
+
+  <!-- ::TENDONES:: -->
+  <tendon>
+    <spatial name="CableGuia" limited="true" range="0 1.1" width="0.005" material="invisibleTendon">
+      <site site="Desliza"/>
+      <site site="Cabeza"/>
+    </spatial>
+  </tendon>
+
+  <tendon>
+    <spatial name="tendonMusDer" limited="true" range="0 1" width="0.005" damping="100" rgba="0.2 0.2 0.2 1">
+      <site site="drumMusDer"/>
+      <site site="RodilleraDer"/>
+    </spatial>
+  </tendon>
+
+  <tendon>
+    <spatial name="tendonMusIzq" limited="true" range="0 1" width="0.005" damping="100" rgba="0.2 0.2 0.2 1">
+      <site site="drumMusIzq"/>
+      <site site="RodilleraIzq"/>
+    </spatial>
+  </tendon>
+
+  <tendon>
+    <spatial name="tendonPieDer" limited="true" range="-1.2 1.2" width="0.005" damping="100" rgba="0.2 0.2 0.2 1">
+      <site site="drumPieDer"/>
+      <site site="GrilleteDer"/>
+    </spatial>
+  </tendon>
+
+  <tendon>
+    <spatial name="tendonPieIzq" limited="true" range="-1.2 1.2" width="0.005" damping="100" rgba="0.2 0.2 0.2 1">
+      <site site="drumPieIzq"/>
+      <site site="GrilleteIzq"/>
+    </spatial>
+  </tendon>
+
+<!-- ::ACTUADORES:: -->
+
+  <actuator>
+  <motor
+    name="MusloDerechoCable"
+    tendon="tendonMusDer"
+    ctrllimited="true"
+    ctrlrange="-150 50"
+    gear="1.0"/>
+</actuator>
+
+<actuator>
+  <motor
+    name="MusloIzquierdoCable"
+    tendon="tendonMusIzq"
+    ctrllimited="true"
+    ctrlrange="-150 50"
+    gear="1.0"/>
+</actuator>
+
+<actuator>
+  <motor
+    name="PiernaDerechoCable"
+    tendon="tendonPieDer"
+    ctrllimited="true"
+    ctrlrange="-100 100"
+    gear="1.0"/>
+</actuator>
+
+<actuator>
+  <motor
+    name="PiernaIzquierdoCable"
+    tendon="tendonPieIzq"
+    ctrllimited="true"
+    ctrlrange="-100 100"
+    gear="1.0"/>
+</actuator>
+
+<!-- <actuator> <position name="MusloDerechoCable" tendon="tendonMusDer" ctrllimited="true" ctrlrange="-1. 0.35" kp="180"/> </actuator> 
+<actuator> <position name="MusloIzquierdoCable" tendon="tendonMusIzq" ctrllimited="true" ctrlrange="-1. 0.35" kp="180"/> </actuator> 
+<actuator> <position name="PiernaDerechoCable" tendon="tendonPieDer" ctrllimited="true" ctrlrange="0 1" kp="120"/> </actuator> 
+<actuator> <position name="PiernaIzquierdoCable" tendon="tendonPieIzq" ctrllimited="true" ctrlrange="0 1" kp="120"/> </actuator> -->
+
+
+</mujoco>
