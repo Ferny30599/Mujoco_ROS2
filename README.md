@@ -24,17 +24,10 @@ The bridge provides real-time exchange of joint states, control inputs (torques/
 The controller responsible for processing the system’s state feedback and generating the actuation commands applied during simulation.
 This script handles ROS 2 subscriptions, control law computation, and command publication to the MuJoCo interface.
 
-Project Objective
-
-The purpose of this project is to offer an extensible and reproducible platform for the analysis, validation, and testing of control strategies applied to robotic systems simulated in MuJoCo and tightly integrated with the ROS 2 ecosystem.
-It is designed for researchers, developers, and students who require a hybrid simulation-and-control environment with configurable and easily modifiable components.
-
 Requirements
 
-MuJoCo (version compatible with the provided XML model)
+MuJoCo 
 
-Python 3.x
+Python 3.12
 
-ROS 2 (Humble, Iron, or the distribution used in your workspace)
-
-Additional dependencies listed in requirements.txt or in the project’s documentation.
+ROS 2 (Humble)
