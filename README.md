@@ -1,4 +1,4 @@
-# Mujoco_ROS2
+# Soft-Exoskeleton based on Bowden Cables simulated on MuJoCo-ROS2
 Simulation project integrating a MuJoCo model with ROS 2 through Python interfaces. Includes the XML model of dummy, STL meshes, communication bridge, and control module for real-time evaluation of exoskeleton based on driven cables and control strategies.
 
 This repository contains the complete simulation model of dummy with generalized soft-exoskeleton based on driven cables developed in MuJoCo, along with the Python scripts used to interface the simulator with ROS 2 and the control module implemented for dynamic testing. The project is intended to provide a reproducible environment for evaluating the behavior of a robotic system through a high-fidelity physics simulation and a real-time communication bridge between MuJoCo and ROS 2.
